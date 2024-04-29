@@ -49,6 +49,7 @@ const Signup = () => {
     }
     else{
         console.log("Sign up  failed Babua")
+        alert("some error occured maybe user already exist try with another username.");
     }
     // Reset form fields after submission if needed
     setFirstName('');

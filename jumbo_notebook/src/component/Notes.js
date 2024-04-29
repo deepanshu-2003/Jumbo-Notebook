@@ -4,15 +4,18 @@ import NoteItem from "./NoteItem";
 import { useNavigate } from "react-router-dom";
 
 const Notes = () => {
-  const { notes, fetchAllNotes,editNote } = useContext(NoteContext);
+  const { notes, fetchAllNotes,editNote,fetchUsername,setUser } = useContext(NoteContext);
   const [enote,setEnote] = useState({_id:'',title:'',note:'',tag:''})
   const navigate = useNavigate();
   useEffect(() => {
     if(localStorage.getItem('token')!==null){
       fetchAllNotes();
+      fetchUsername();
+      
     }
     else{
       navigate('/login');
+      setUser('user');
     }
   });
 

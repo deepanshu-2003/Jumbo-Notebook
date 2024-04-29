@@ -1,12 +1,23 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import NoteContext from "../context/notes/noteContext";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const url = "http://localhost:5000/auth/login";
   const navigate = useNavigate();
+  const {setUser,fetchUsername} = useContext(NoteContext);
 
+  useEffect(()=>{
+    if(localStorage.getItem('token')!==null){
+      fetchUsername();
+      
+    }
+    else{
+      setUser('user');
+    }
+  })
   const headers = {
     'Content-Type': 'application/json'
   }
@@ -32,6 +43,7 @@ const Login = () => {
         navigate('/');
     }
     else{
+        alert("Invalid credentials");
         console.log("Login failed Babua")
     }
     // Reset form fields after submission if needed
