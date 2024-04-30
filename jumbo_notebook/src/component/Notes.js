@@ -1,12 +1,17 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import NoteContext from "../context/notes/noteContext";
 import NoteItem from "./NoteItem";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 const Notes = () => {
-  const { notes, fetchAllNotes,editNote,fetchUsername,setUser } = useContext(NoteContext);
+  const { notes, fetchAllNotes,editNote,fetchUsername,setUser,addAlert,setNotes } = useContext(NoteContext);
   const [enote,setEnote] = useState({_id:'',title:'',note:'',tag:''})
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+  useEffect(()=>{
+    if(localStorage.getItem('token')===null){
+      addAlert("Please Login with an account first","danger");
+    }
+  },[]);
   useEffect(() => {
     if(localStorage.getItem('token')!==null){
       fetchAllNotes();
@@ -14,8 +19,9 @@ const Notes = () => {
       
     }
     else{
-      navigate('/login');
+      // navigate('/login');
       setUser('user');
+      setNotes([]);
     }
   });
 
