@@ -16,6 +16,7 @@ const Login = () => {
     } else {
       setUser("user");
     }
+    
   });
   const headers = {
     "Content-Type": "application/json",
@@ -42,7 +43,7 @@ const Login = () => {
       navigate("/");
       addAlert("Welcome user", "success");
     } else {
-      addAlert("Invalid credentials","danger");
+      addAlert("Invalid credentials", "danger");
       console.log("Login failed Babua");
     }
     // Reset form fields after submission if needed

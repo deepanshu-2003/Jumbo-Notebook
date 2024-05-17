@@ -52,9 +52,10 @@ const Signup = () => {
     if (response.ok) {
       const json = await response.json();
       console.log(json);
-      localStorage.setItem("token", json.auth_token);
-      addAlert("Congratulations, you successfully logged in");
-      navigate("/");
+      // localStorage.setItem("token", json.auth_token);
+      console.log(json.auth_token)
+      navigate("/login");
+      addAlert("Congratulations, you successfully been registered");
     } else {
       // const errorResponse = await response.json();
       // alert(errorResponse.error);
